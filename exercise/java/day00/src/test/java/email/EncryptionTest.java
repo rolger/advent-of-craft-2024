@@ -35,6 +35,20 @@ class EncryptionTest {
                 .assertIsSatisfied();
     }
 
+
+    @Test
+    void decryptEncryptedEmail() throws Exception {
+        var content = FileUtils.loadFile("EncryptedEmail.txt");
+
+        Encryption encryption = createEncryption();
+
+        String decryptedMessage = encryption.decrypt(content);
+
+        assertThat(decryptedMessage).startsWith("Dear consultant");
+        System.out.println(decryptedMessage);
+    }
+
+
     private static Encryption createEncryption() {
         try {
             return new Encryption(
