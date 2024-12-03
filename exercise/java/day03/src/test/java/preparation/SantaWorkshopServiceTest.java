@@ -17,9 +17,8 @@ class SantaWorkshopServiceTest {
     }
 
     @Property
-    void prepareGiftWithValidToyShouldInstantiateIt(@ForAll @DoubleRange(min = 0.0, max = 5.0, maxIncluded = false) double w) {
+    void prepareGiftWithValidToyShouldInstantiateIt(@ForAll @DoubleRange(min = 0.0, max = 5.0, maxIncluded = false) double weight) {
         var giftName = "Bitzee";
-        double weight = w;
         var color = "Purple";
         var material = "Plastic";
 
@@ -30,7 +29,7 @@ class SantaWorkshopServiceTest {
 
     @Provide
     Arbitrary<String> stringsExceptRecommendedAge() {
-        return Arbitraries.strings().filter(aString -> aString != RECOMMENDED_AGE);
+        return Arbitraries.strings().filter(aString -> !aString.equals(RECOMMENDED_AGE));
     }
 
     @Property
@@ -60,9 +59,8 @@ class SantaWorkshopServiceTest {
     }
 
     @Property
-    void failsForATooHeavyGift(@ForAll @DoubleRange(min = 5.0, minIncluded = false) double w) {
+    void failsForATooHeavyGift(@ForAll @DoubleRange(min = 5.0, minIncluded = false) double weight) {
         var giftName = "Dog-E";
-        double weight = w;
         var color = "White";
         var material = "Metal";
 
