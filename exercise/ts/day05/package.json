@@ -10,6 +10,6 @@
     "@types/jest": "^29.5.8"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll"
   }
 }

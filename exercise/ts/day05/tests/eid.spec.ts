@@ -1,5 +1,10 @@
+
+function validateEID(EID: string) {
+    return undefined;
+}
+
 describe('EID', () => {
     test('implement your tests here', () => {
-        expect(43).toBe(42);
+        expect(validateEID('19800767')).toBeTruthy();
     });
 });
