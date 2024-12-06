@@ -3,6 +3,8 @@ import {validateEID} from "./eid";
 describe('EID', () => {
     test('with valid values', () => {
         expect(validateEID('19800767')).toBeTruthy();
+        expect(validateEID('29800873')).toBeTruthy();
+        expect(validateEID('31213214')).toBeTruthy();
     });
 
     test('with empty input is invalid', () => {
@@ -26,6 +28,10 @@ describe('EID', () => {
 
     test('with incorrect serial number are invalid', () => {
         expect(validateEID('19800i67')).toBeFalsy();
+    });
+
+    test('with incorrect key are invalid', () => {
+        expect(validateEID('31213299')).toBeFalsy();
     });
 
 });

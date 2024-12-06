@@ -26,10 +26,23 @@ function validateSerialNumber(EID: string) {
 }
 
 
+function validateKey(EID: string) {
+    let eidNumber = Number(EID.substring(0, 6));
+    let key = Number(EID.substring(6));
+
+    if (isNaN(eidNumber) || isNaN(key))
+        return false;
+
+    let keyComputed = 97 - eidNumber % 97;
+
+    return key === keyComputed;
+}
+
 export function validateEID(EID: string) {
     return EID
         && validateLength(EID)
         && validateSex(EID)
         && validateYear(EID)
-        && validateSerialNumber(EID);
+        && validateSerialNumber(EID)
+        && validateKey(EID);
 }
