@@ -1,6 +1,6 @@
 
 function validateEID(EID: string) {
-    return undefined;
+    return true;
 }
 
 describe('EID', () => {
