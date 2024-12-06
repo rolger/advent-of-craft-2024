@@ -6,25 +6,25 @@ enum ElfSex {
 
 const VALID_LENGTH = 8;
 
-function validateLength(EID: string) {
-    return EID.length === VALID_LENGTH;
+function validateLength(inputEID: string) {
+    return inputEID.length === VALID_LENGTH;
 }
 
-function validateSex(EID: string) {
-    let sex = EID.substring(0, 1);
+function validateSex(inputEID: string) {
+    let sex = inputEID.substring(0, 1);
     return sex in ElfSex;
 }
 
-function isANumber(year: string) {
-    return !isNaN(Number(year));
+function isANumber(number: string) {
+    return !isNaN(Number(number));
 }
 
-function validateYear(EID: string) {
-    return isANumber(EID.substring(1, 3));
+function validateYear(inputEID: string) {
+    return isANumber(inputEID.substring(1, 3));
 }
 
-function validateSerialNumber(EID: string) {
-    return isANumber(EID.substring(3, 6));
+function validateSerialNumber(inputEID: string) {
+    return isANumber(inputEID.substring(3, 6));
 }
 
 function computedKey(eidNumber: number) {
@@ -35,14 +35,17 @@ function validateKey(EID: string) {
     let eidNumber = Number(EID.substring(0, 6));
     let key = Number(EID.substring(6));
 
-    return isNaN(eidNumber) && isNaN(key) &&  key === computedKey(eidNumber);
+    if (isNaN(eidNumber) || isNaN(key))
+        return false;
+
+    return key === computedKey(eidNumber);
 }
 
-export function validateEID(EID: string) {
-    return EID
-        && validateLength(EID)
-        && validateSex(EID)
-        && validateYear(EID)
-        && validateSerialNumber(EID)
-        && validateKey(EID);
+export function validateEID(inputEID: string) {
+    return inputEID
+        && validateLength(inputEID)
+        && validateSex(inputEID)
+        && validateYear(inputEID)
+        && validateSerialNumber(inputEID)
+        && validateKey(inputEID);
 }
