@@ -1,6 +1,6 @@
 
 function validateEID(EID: string) {
-    if (EID === null) {
+    if (!EID) {
         return false;
     }
     return true;
@@ -11,10 +11,9 @@ describe('EID Tester', () => {
         expect(validateEID('19800767')).toBeTruthy();
     });
 
-    test('wrong input is an invalid EID', () => {
+    test('empty input is an invalid EID', () => {
         expect(validateEID(null)).toBeFalsy();
         expect(validateEID('')).toBeFalsy();
-
     });
 
 });

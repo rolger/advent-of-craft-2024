@@ -12,10 +12,10 @@ Valid EID:
 
 Invalid EID:
 - null, ""
-- wrong sex: 09800867, 49800867
-- not a year: a1
 - to short: 12777
 - to long: 12777127771277712777
+- wrong sex: 09800867, 49800867
+- not a year: a1
 - wrong serial number: 19800i67, 19800067
 - incorrect checksum: 31213299
 
