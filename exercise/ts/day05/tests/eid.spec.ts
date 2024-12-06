@@ -3,6 +3,11 @@ function validateEID(EID: string) {
     if (!EID) {
         return false;
     }
+
+    if (EID.length !== 8) {
+        return false;
+    }
+
     return true;
 }
 
