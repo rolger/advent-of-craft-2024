@@ -1,30 +1,4 @@
-
-enum ElfSex {
-    Sloubi = 1,
-    Gagna = 2,
-    Catact = 3
-};
-
-function validateEID(EID: string) {
-    if (!EID) {
-        return false;
-    }
-
-    const VALID_LENGTH = 8;
-    if (EID.length !== VALID_LENGTH) {
-        return false;
-    }
-
-    let sex = EID.substring(0, 1);
-    if (!(sex in ElfSex))
-        return false;
-
-    let year = EID.substring(1, 3);
-    if (isNaN(Number(year)))
-        return false;
-
-    return true;
-}
+import {validateEID} from "./eid";
 
 describe('EID', () => {
     test('with valid values', () => {
@@ -50,6 +24,8 @@ describe('EID', () => {
         expect(validateEID('21b00867')).toBeFalsy();
     });
 
-
+    test('with incorrect serial number are invalid', () => {
+        expect(validateEID('19800i67')).toBeFalsy();
+    });
 
 });
