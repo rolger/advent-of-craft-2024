@@ -15,27 +15,27 @@ function validateSex(EID: string) {
     return sex in ElfSex;
 }
 
-function validateYear(EID: string) {
-    let year = EID.substring(1, 3);
+function isANumber(year: string) {
     return !isNaN(Number(year));
 }
 
-function validateSerialNumber(EID: string) {
-    let serialNumber = EID.substring(3, 6);
-    return !isNaN(Number(serialNumber));
+function validateYear(EID: string) {
+    return isANumber(EID.substring(1, 3));
 }
 
+function validateSerialNumber(EID: string) {
+    return isANumber(EID.substring(3, 6));
+}
+
+function computedKey(eidNumber: number) {
+    return 97 - eidNumber % 97;
+}
 
 function validateKey(EID: string) {
     let eidNumber = Number(EID.substring(0, 6));
     let key = Number(EID.substring(6));
 
-    if (isNaN(eidNumber) || isNaN(key))
-        return false;
-
-    let keyComputed = 97 - eidNumber % 97;
-
-    return key === keyComputed;
+    return isNaN(eidNumber) && isNaN(key) &&  key === computedKey(eidNumber);
 }
 
 export function validateEID(EID: string) {
