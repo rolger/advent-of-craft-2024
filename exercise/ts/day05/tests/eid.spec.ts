@@ -13,6 +13,8 @@ describe('EID Tester', () => {
 
     test('wrong input is an invalid EID', () => {
         expect(validateEID(null)).toBeFalsy();
+        expect(validateEID('')).toBeFalsy();
+
     });
 
 });
