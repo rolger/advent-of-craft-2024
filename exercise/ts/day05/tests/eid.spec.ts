@@ -1,5 +1,8 @@
 
 function validateEID(EID: string) {
+    if (EID === null) {
+        return false;
+    }
     return true;
 }
 
