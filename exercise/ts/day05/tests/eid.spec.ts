@@ -16,4 +16,8 @@ describe('EID Tester', () => {
         expect(validateEID('')).toBeFalsy();
     });
 
+    test('wrong length are invalid EIDs', () => {
+        expect(validateEID('12')).toBeFalsy();
+    });
+
 });
