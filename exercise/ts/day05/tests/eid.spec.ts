@@ -25,4 +25,8 @@ describe('EID Tester', () => {
         expect(validateEID('12')).toBeFalsy();
     });
 
+    test('incorrect sex are invalid EIDs', () => {
+        expect(validateEID('49800867')).toBeFalsy();
+    });
+
 });
