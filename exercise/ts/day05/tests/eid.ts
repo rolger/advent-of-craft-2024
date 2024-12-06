@@ -1,31 +1,35 @@
-
 enum ElfSex {
     Sloubi = 1,
     Gagna = 2,
     Catact = 3
 };
 
-export function validateEID(EID: string) {
-    if (!EID) {
-        return false;
-    }
+const VALID_LENGTH = 8;
 
-    const VALID_LENGTH = 8;
-    if (EID.length !== VALID_LENGTH) {
-        return false;
-    }
+function validateLength(EID: string) {
+    return EID.length === VALID_LENGTH;
+}
 
+function validateSex(EID: string) {
     let sex = EID.substring(0, 1);
-    if (!(sex in ElfSex))
-        return false;
+    return sex in ElfSex;
+}
 
+function validateYear(EID: string) {
     let year = EID.substring(1, 3);
-    if (isNaN(Number(year)))
-        return false;
+    return !isNaN(Number(year));
+}
 
+function validateSerialNumber(EID: string) {
     let serialNumber = EID.substring(3, 6);
-    if (isNaN(Number(serialNumber)))
-        return false;
+    return !isNaN(Number(serialNumber));
+}
 
-    return true;
+
+export function validateEID(EID: string) {
+    return EID
+        && validateLength(EID)
+        && validateSex(EID)
+        && validateYear(EID)
+        && validateSerialNumber(EID);
 }
