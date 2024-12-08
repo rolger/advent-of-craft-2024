@@ -20,7 +20,11 @@ public class InMemoryToyRepository implements ToyRepository {
 
     @Override
     public void save(Toy toy) {
-        toys.remove(toy);
-        toys.add(toy);
+        if (toy.isChanged()) {
+            toys.remove(toy);
+            toys.add(toy);
+
+            toy.setChanged(false);
+        }
     }
 }

@@ -28,8 +28,8 @@ class ToyTest {
     void assignToElf_should_tell_if_changed() {
         Toy toy = new Toy("Train", Toy.State.UNASSIGNED);
 
-        var toBeSaved = toy.assignToElf();
+        toy.assignToElf();
 
-        assertThat(toBeSaved).isTrue();
+        assertThat(toy.isChanged()).isTrue();
     }
 }

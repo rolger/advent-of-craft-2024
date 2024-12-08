@@ -16,10 +16,9 @@ public class ToyProductionService {
         if (toy == null)
             return;
 
-        boolean toBeSaved = toy.assignToElf();
+        toy.assignToElf();
 
-        if (toBeSaved)
-            repository.save(toy);
+        repository.save(toy);
     }
 
 }
