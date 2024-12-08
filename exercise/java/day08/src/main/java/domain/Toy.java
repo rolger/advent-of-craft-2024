@@ -1,6 +1,7 @@
 package domain;
 
 public class Toy {
+
     public enum State {
         UNASSIGNED, IN_PRODUCTION, COMPLETED
     }
@@ -23,5 +24,13 @@ public class Toy {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public boolean assignToElf() {
+        if (this.getState() == State.UNASSIGNED) {
+            this.setState(State.IN_PRODUCTION);
+            return true;
+        }
+        return false;
     }
 }

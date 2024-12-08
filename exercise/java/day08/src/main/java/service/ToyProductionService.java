@@ -12,9 +12,14 @@ public class ToyProductionService {
 
     public void assignToyToElf(String toyName) {
         Toy toy = repository.findByName(toyName);
-        if (toy != null && toy.getState() == Toy.State.UNASSIGNED) {
-            toy.setState(Toy.State.IN_PRODUCTION);
+
+        if (toy == null)
+            return;
+
+        boolean toBeSaved = toy.assignToElf();
+
+        if (toBeSaved)
             repository.save(toy);
-        }
     }
+
 }
