@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ElfWorkshopTests {
+    // Consider using a setup method to avoid repeating the initialization of the workshop object in each test.
+
+    // What is the purpose of having three tests? Could you consider combining these 3 tests into a single test to reduce redundancy?
     @Test
     public void addTask_Should_Add_Task() {
         var workshop = new ElfWorkshop();
@@ -40,6 +43,10 @@ public class ElfWorkshopTests {
         assertThat(workshop.getTaskList()).isEmpty();
     }
 
+    // How could you split the test, to separate the business rules and to improve the clarity?
+    // For example, you could have two tests:
+    // - One test to verify removing the last task from the list and ensuring the list becomes empty.
+    // - Another test to check the behavior when removing only the first task from a list with multiple tasks.
     @Test
     public void completeTask_Should_Remove_Task() {
         var workshop = new ElfWorkshop();
