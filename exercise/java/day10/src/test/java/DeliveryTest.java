@@ -18,7 +18,8 @@ class DeliveryTest {
             "3, -1",
             "4, 53",
             "5, -3",
-            "6, 2920"
+            "6, 2920",
+            "7, 2"
     })
     void returnFloorNumberBasedOnInstructions(String fileName, int expectedFloor) throws IOException, URISyntaxException {
         var instructions = loadInstructionsFromFile(fileName + ".txt");

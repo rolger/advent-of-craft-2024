@@ -1,36 +1,35 @@
 package delivery;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Function;
 
 public class Building {
     public static int whichFloor(String instructions) {
-        List<Pair<Character, Integer>> val = new ArrayList<>();
+        Function<Character, Integer> calculateFloor = getCalculateFloorFunction(instructions);
 
-        for (int i = 0; i < instructions.length(); i++) {
-            char c = instructions.charAt(i);
-
-            if (instructions.contains("🧝")) {
-                int j;
-                if (c == ')') j = 3;
-                else j = -2;
-
-                val.add(new Pair<>(c, j));
-            } else if (!instructions.contains("🧝")) {
-                val.add(new Pair<>(c, c == '(' ? 1 : -1));
-            } else {
-                val.add(new Pair<>(c, c == '(' ? 42 : -2));
-            }
-        }
-
-        int result = 0;
-        for (Pair<Character, Integer> kp : val) {
-            result += kp.value();
-        }
-
-        return result;
+        return instructions.chars()
+                .map(c -> calculateFloor.apply((char) c))
+                .sum();
     }
 
-    public record Pair<K, V>(K key, V value) {
+    private static Function<Character, Integer> getCalculateFloorFunction(String instructions) {
+        return instruction -> {
+            if (instructions.contains("🧝")) {
+                return calculateFloorWithElf(instruction);
+            } else {
+                return calculateFloorWithoutElf(instruction);
+            }
+        };
+    }
+
+    private static Integer calculateFloorWithoutElf(char instruction) {
+        return instruction == '(' ? 1 : -1;
+    }
+
+    private static int calculateFloorWithElf(char instruction) {
+        return switch (instruction) {
+            case ')' -> 3;
+            case '(' -> -2;
+            default -> 0;
+        };
     }
 }
