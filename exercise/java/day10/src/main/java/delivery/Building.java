@@ -1,34 +1,44 @@
 package delivery;
 
-import java.util.function.Function;
-
 public class Building {
+    public static final String ELF = "🧝";
+
+    public static final char DOWN_INSTRUCTION = ')';
+    public static final char UP_INSTRUCTION = '(';
+
+    private interface FloorStrategy {
+        Integer calculateFloor(int instruction);
+    }
+
+    private static final FloorStrategy secret = Building::calculateFloorWithElf;
+    private static final FloorStrategy standard = Building::calculateFloorWithoutElf;
+
     public static int whichFloor(String instructions) {
-        Function<Character, Integer> calculateFloor = getCalculateFloorFunction(instructions);
+        FloorStrategy floorStrategy = createFloorStrategy(instructions);
 
         return instructions.chars()
-                .map(c -> calculateFloor.apply((char) c))
+                .map(floorStrategy::calculateFloor)
                 .sum();
     }
 
-    private static Function<Character, Integer> getCalculateFloorFunction(String instructions) {
-        return instruction -> {
-            if (instructions.contains("🧝")) {
-                return calculateFloorWithElf(instruction);
-            } else {
-                return calculateFloorWithoutElf(instruction);
-            }
+    private static FloorStrategy createFloorStrategy(String instructions) {
+        return instructions.contains(ELF) ? secret : standard;
+    }
+
+    private static Integer calculateFloorWithoutElf(int instruction) {
+        return switch ((char) instruction) {
+            case UP_INSTRUCTION -> 1;
+            case DOWN_INSTRUCTION -> -1;
+            // don't change the floor for unknown instructions
+            default -> 0;
         };
     }
 
-    private static Integer calculateFloorWithoutElf(char instruction) {
-        return instruction == '(' ? 1 : -1;
-    }
-
-    private static int calculateFloorWithElf(char instruction) {
-        return switch (instruction) {
-            case ')' -> 3;
-            case '(' -> -2;
+    private static Integer calculateFloorWithElf(int instruction) {
+        return switch ((char) instruction) {
+            case UP_INSTRUCTION -> -2;
+            case DOWN_INSTRUCTION -> 3;
+            // don't change the floor for unknown instructions
             default -> 0;
         };
     }

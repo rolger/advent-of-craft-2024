@@ -1,35 +1,49 @@
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Objects;
+import org.junit.jupiter.api.Test;
 
 import static delivery.Building.whichFloor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DeliveryTest {
-    @ParameterizedTest
-    @CsvSource({
-            "1, 0",
-            "2, 3",
-            "3, -1",
-            "4, 53",
-            "5, -3",
-            "6, 2920",
-            "7, 2"
-    })
-    void returnFloorNumberBasedOnInstructions(String fileName, int expectedFloor) throws IOException, URISyntaxException {
-        var instructions = loadInstructionsFromFile(fileName + ".txt");
-        assertThat(whichFloor(instructions))
-                .isEqualTo(expectedFloor);
+    @Test
+    public void standardFloorWithAnUpInstructionIsLevelPlusOne() {
+        var instructions = "(";
+
+        assertThat(whichFloor(instructions)).isEqualTo(1);
     }
 
-    private static String loadInstructionsFromFile(String input) throws URISyntaxException, IOException {
-        return Files.readString(
-                Path.of(Objects.requireNonNull(DeliveryTest.class.getClassLoader().getResource(input)).toURI())
-        );
+    @Test
+    public void standardFloorWithADownInstructionIsLevelMinusOne() {
+        var instructions = ")";
+
+        assertThat(whichFloor(instructions)).isEqualTo(-1);
     }
+
+    @Test
+    public void standardFloorWithMultipleInstructionsIsSum() {
+        var instructions = "(()))";
+
+        assertThat(whichFloor(instructions)).isEqualTo(-1);
+    }
+
+    @Test
+    public void secretFloorWithAnUpInstructionIsLevelMinusTwo() {
+        var instructions = "(🧝";
+
+        assertThat(whichFloor(instructions)).isEqualTo(-2);
+    }
+
+    @Test
+    public void secretFloorWithADownInstructionIsLevelPlusThree() {
+        var instructions = ")🧝";
+
+        assertThat(whichFloor(instructions)).isEqualTo(3);
+    }
+
+    @Test
+    public void secretFloorWithMultipleInstructionsIsSum() {
+        var instructions = "(()🧝)";
+
+        assertThat(whichFloor(instructions)).isEqualTo(2);
+    }
+
 }
