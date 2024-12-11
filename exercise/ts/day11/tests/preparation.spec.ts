@@ -14,8 +14,12 @@ describe('Preparation', () => {
 
     test.each([
         [1, 'Baby'],
+        [2, 'Baby'],
         [3, 'Toddler'],
+        [4, 'Toddler'],
+        [5, 'Toddler'],
         [6, 'Child'],
+        [12, 'Child'],
         [13, 'Teen']
     ])('categorizeGift should return the correct category for age %d', (age, expectedCategory) => {
         expect(Preparation.categorizeGift(age)).toBe(expectedCategory);
@@ -30,5 +34,10 @@ describe('Preparation', () => {
         [ToyType.CREATIVE, 15, 100, false]
     ])('ensureToyBalance should return %s for toy type %s with %d toys out of %d total toys', (toyType, toysCount, totalToys, expected) => {
         expect(Preparation.ensureToyBalance(toyType, toysCount, totalToys)).toBe(expected);
+    });
+
+    test('ensureToyBalance should handle non-existing enum values', () => {
+        const invalidToyType = 'unknown' as ToyType;
+        expect(Preparation.ensureToyBalance(invalidToyType, 10, 100)).toBeFalsy();
     });
 });
