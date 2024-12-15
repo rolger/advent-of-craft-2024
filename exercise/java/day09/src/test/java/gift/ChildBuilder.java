@@ -1,9 +1,11 @@
 package gift;
 
 public class ChildBuilder {
-    private String firstName;
-    private String lastName;
-    private int age;
+    private static final int DEFAULT_AGE = 6;
+
+    private String firstName = "John";
+    private String lastName = "Doe";
+    private int age = DEFAULT_AGE;
     private Behavior behavior;
     private GiftRequest giftRequest;
 
@@ -40,7 +42,18 @@ public class ChildBuilder {
         return this;
     }
 
+    public ChildBuilder withFeasibleGift() {
+        this.setGiftRequest(new GiftRequest("Any gift", true, Priority.NICE_TO_HAVE));
+        return this;
+    }
+
+    public ChildBuilder withInfeasibleGift() {
+        this.setGiftRequest(new GiftRequest("Any gift", false, Priority.DREAM));
+        return this;
+    }
+
     public Child createChild() {
         return new Child(firstName, lastName, age, behavior, giftRequest);
     }
+
 }
