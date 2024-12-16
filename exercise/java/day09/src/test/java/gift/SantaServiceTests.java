@@ -1,7 +1,10 @@
 package gift;
 
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import static gift.ChildBuilder.aNaughtyChild;
+import static gift.ChildBuilder.aNiceChild;
+import static gift.SantaServiceAssertion.assertThat;
 
 class SantaServiceTests {
 
@@ -9,19 +12,16 @@ class SantaServiceTests {
 
     @Test
     void requestIsApprovedForNiceChildWithFeasibleGift() {
-        Child niceChild = new Child("Alice", "Thomas", 9, Behavior.NICE, new GiftRequest("Bicycle", true, Priority.NICE_TO_HAVE));
-        assertThat(service.evaluateRequest(niceChild)).isTrue();
+        assertThat(service).shouldApprove(aNiceChild().withFeasibleGift());
     }
 
     @Test
     void requestIsDeniedForNaughtyChild() {
-        Child naughtyChild = new Child("Noa", "Thierry", 6, Behavior.NAUGHTY, new GiftRequest("SomeToy", true, Priority.DREAM));
-        assertThat(service.evaluateRequest(naughtyChild)).isFalse();
+        assertThat(service).shouldDeny(aNaughtyChild().withFeasibleGift());
     }
 
     @Test
     void requestIsDeniedForNiceChildWithInfeasibleGift() {
-        Child niceChildWithInfeasibleGift = new Child("Charlie", "Joie", 3, Behavior.NICE, new GiftRequest("AnotherToy", false, Priority.DREAM));
-        assertThat(service.evaluateRequest(niceChildWithInfeasibleGift)).isFalse();
+        assertThat(service).shouldDeny(aNiceChild().withInfeasibleGift());
     }
 }
