@@ -12,16 +12,16 @@ class SantaServiceTests {
 
     @Test
     void requestIsApprovedForNiceChildWithFeasibleGift() {
-        assertThat(service).shouldApprove(aNiceChild().withFeasibleGift().createChild());
+        assertThat(service).shouldApprove(aNiceChild().withFeasibleGift());
     }
 
     @Test
     void requestIsDeniedForNaughtyChild() {
-        assertThat(service).shouldDeny(aNaughtyChild().withFeasibleGift().createChild());
+        assertThat(service).shouldDeny(aNaughtyChild().withFeasibleGift());
     }
 
     @Test
     void requestIsDeniedForNiceChildWithInfeasibleGift() {
-        assertThat(service).shouldDeny(aNiceChild().withInfeasibleGift().createChild());
+        assertThat(service).shouldDeny(aNiceChild().withInfeasibleGift());
     }
 }
