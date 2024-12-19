@@ -5,7 +5,9 @@ public class RockPaperScissors {
     }
 
     public static Result play(Choice player1, Choice player2) {
-        if (player1 == player2) return new Result(Winner.DRAW, "same choice");
+        if (player1 == player2)
+            return new Result(Winner.DRAW, "same choice");
+
         else if (player1 == Choice.ROCK && player2 == Choice.SCISSORS)
             return new Result(Winner.PLAYER_1, "rock crushes scissors");
         else if (player1 == Choice.PAPER && player2 == Choice.ROCK)
