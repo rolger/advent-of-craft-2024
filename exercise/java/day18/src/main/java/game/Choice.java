@@ -36,6 +36,10 @@ public enum Choice {
     LIZARD("🦎") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
+            if (other == PAPER)
+                return Optional.of("lizard eats paper");
+            if (other == SPOCK)
+                return Optional.of("lizard poisons Spock");
             return Optional.empty();
         }
     },
