@@ -8,6 +8,8 @@ public enum Choice {
         public Optional<String> beatsWithMessage(Choice other) {
             if (other == SCISSORS)
                 return Optional.of("rock crushes scissors");
+            else if (other == LIZARD)
+                return Optional.of("rock crushes lizard");
             else
                 return Optional.empty();
         }
