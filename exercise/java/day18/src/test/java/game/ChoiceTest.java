@@ -14,4 +14,13 @@ class ChoiceTest {
                 () -> fail("rock should beat scissors")
         );
     }
+
+    @Test
+    void rockShouldBeatLizardWithMessage() {
+        Choice.ROCK.beatsWithMessage(Choice.LIZARD).ifPresentOrElse(
+                message -> assertEquals("rock crushes lizard", message),
+                () -> fail("rock should beat lizard")
+        );
+    }
+
 }
