@@ -19,7 +19,7 @@ public enum Choice {
             if (other == ROCK)
                 return Optional.of("paper covers rock");
             if (other == SPOCK)
-                return Optional.of("paper disproves Spock");
+                return Optional.of("paper disproves spock");
             return Optional.empty();
         }
     },
@@ -39,7 +39,7 @@ public enum Choice {
             if (other == PAPER)
                 return Optional.of("lizard eats paper");
             if (other == SPOCK)
-                return Optional.of("lizard poisons Spock");
+                return Optional.of("lizard poisons spock");
             return Optional.empty();
         }
     },

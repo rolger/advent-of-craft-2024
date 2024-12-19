@@ -1,13 +1,10 @@
 package game;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class ChoiceTest {
 
@@ -29,7 +26,7 @@ class ChoiceTest {
     @ParameterizedTest
     @CsvSource({
             "ROCK,paper covers rock",
-            "SPOCK,paper disproves Spock"
+            "SPOCK,paper disproves spock"
     })
     void paperShouldBeatWithMessage(Choice other, String expectedMessage) {
         assertThat(Choice.PAPER.beatsWithMessage(other)).hasValue(expectedMessage);
@@ -60,7 +57,7 @@ class ChoiceTest {
     @ParameterizedTest
     @CsvSource({
             "PAPER,lizard eats paper",
-            "SPOCK,lizard poisons Spock"
+            "SPOCK,lizard poisons spock"
     })
     void lizardShouldBeatWithMessage(Choice other, String expectedMessage) {
         assertThat(Choice.LIZARD.beatsWithMessage(other)).hasValue(expectedMessage);
