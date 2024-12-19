@@ -6,51 +6,51 @@ public enum Choice {
     ROCK("🪨") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            if (other == SCISSORS)
-                return Optional.of("rock crushes scissors");
-            if (other == LIZARD)
-                return Optional.of("rock crushes lizard");
-            return Optional.empty();
+            return switch (other) {
+                case SCISSORS -> Optional.of("rock crushes scissors");
+                case LIZARD -> Optional.of("rock crushes lizard");
+                default -> Optional.empty();
+            };
         }
     },
     PAPER("📄") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            if (other == ROCK)
-                return Optional.of("paper covers rock");
-            if (other == SPOCK)
-                return Optional.of("paper disproves spock");
-            return Optional.empty();
+            return switch (other) {
+                case ROCK -> Optional.of("paper covers rock");
+                case SPOCK -> Optional.of("paper disproves spock");
+                default -> Optional.empty();
+            };
         }
     },
     SCISSORS("✂️") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            if (other == PAPER)
-                return Optional.of("scissors cuts paper");
-            if (other == LIZARD)
-                return Optional.of("scissors decapitates lizard");
-            return Optional.empty();
+            return switch (other) {
+                case PAPER -> Optional.of("scissors cuts paper");
+                case LIZARD -> Optional.of("scissors decapitates lizard");
+                default -> Optional.empty();
+            };
         }
     },
     LIZARD("🦎") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            if (other == PAPER)
-                return Optional.of("lizard eats paper");
-            if (other == SPOCK)
-                return Optional.of("lizard poisons spock");
-            return Optional.empty();
+            return switch (other) {
+                case PAPER -> Optional.of("lizard eats paper");
+                case SPOCK -> Optional.of("lizard poisons spock");
+                default -> Optional.empty();
+            };
         }
     },
     SPOCK("🖖") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            if (other == ROCK)
-                return Optional.of("spock vaporizes rock");
-            if (other == SCISSORS)
-                return Optional.of("spock smashes scissors");
-            return Optional.empty();
+            return switch (other) {
+                case ROCK -> Optional.of("spock vaporizes rock");
+                case SCISSORS -> Optional.of("spock smashes scissors");
+                default -> Optional.empty();
+            };
         }
     };
 
