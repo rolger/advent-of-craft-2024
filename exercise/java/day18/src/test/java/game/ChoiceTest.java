@@ -3,6 +3,7 @@ package game;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +18,12 @@ class ChoiceTest {
     })
     void rockShouldBeatWithMessage(Choice other, String expectedMessage) {
         assertThat(Choice.ROCK.beatsWithMessage(other)).hasValue(expectedMessage);
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = Choice.class, names = {"PAPER", "SPOCK"})
+    void rockShouldNotBeat(Choice other) {
+        assertThat(Choice.ROCK.beatsWithMessage(other)).isNotPresent();
     }
 
 }
