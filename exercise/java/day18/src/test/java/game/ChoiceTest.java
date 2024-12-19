@@ -56,4 +56,19 @@ class ChoiceTest {
     void scissorsShouldNotBeat(Choice other) {
         assertThat(Choice.SCISSORS.beatsWithMessage(other)).isNotPresent();
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "PAPER,lizard eats paper",
+            "SPOCK,lizard poisons Spock"
+    })
+    void lizardShouldBeatWithMessage(Choice other, String expectedMessage) {
+        assertThat(Choice.LIZARD.beatsWithMessage(other)).hasValue(expectedMessage);
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = Choice.class, names = {"ROCK", "SCISSORS"})
+    void lizardShouldNotBeat(Choice other) {
+        assertThat(Choice.LIZARD.beatsWithMessage(other)).isNotPresent();
+    }
 }
