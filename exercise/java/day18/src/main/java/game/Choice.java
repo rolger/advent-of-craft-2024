@@ -28,6 +28,10 @@ public enum Choice {
     SCISSORS("✂️") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
+            if (other == PAPER)
+                return Optional.of("scissors cuts paper");
+            else if (other == LIZARD)
+                return Optional.of("scissors decapitates lizard");
             return Optional.empty();
         }
     },
