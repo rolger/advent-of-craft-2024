@@ -26,4 +26,14 @@ class ChoiceTest {
         assertThat(Choice.ROCK.beatsWithMessage(other)).isNotPresent();
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "ROCK,paper covers rock",
+            "SPOCK,paper disproves Spock"
+    })
+    void paperShouldBeatWithMessage(Choice other, String expectedMessage) {
+        assertThat(Choice.PAPER.beatsWithMessage(other)).hasValue(expectedMessage);
+    }
+
+
 }
