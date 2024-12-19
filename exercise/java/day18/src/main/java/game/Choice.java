@@ -8,10 +8,9 @@ public enum Choice {
         public Optional<String> beatsWithMessage(Choice other) {
             if (other == SCISSORS)
                 return Optional.of("rock crushes scissors");
-            else if (other == LIZARD)
+            if (other == LIZARD)
                 return Optional.of("rock crushes lizard");
-            else
-                return Optional.empty();
+            return Optional.empty();
         }
     },
     PAPER("📄") {
@@ -19,10 +18,9 @@ public enum Choice {
         public Optional<String> beatsWithMessage(Choice other) {
             if (other == ROCK)
                 return Optional.of("paper covers rock");
-            else if (other == SPOCK)
+            if (other == SPOCK)
                 return Optional.of("paper disproves Spock");
-            else
-                return Optional.empty();
+            return Optional.empty();
         }
     },
     SCISSORS("✂️") {
@@ -30,7 +28,7 @@ public enum Choice {
         public Optional<String> beatsWithMessage(Choice other) {
             if (other == PAPER)
                 return Optional.of("scissors cuts paper");
-            else if (other == LIZARD)
+            if (other == LIZARD)
                 return Optional.of("scissors decapitates lizard");
             return Optional.empty();
         }
