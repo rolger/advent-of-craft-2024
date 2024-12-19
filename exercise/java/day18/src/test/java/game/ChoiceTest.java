@@ -51,5 +51,9 @@ class ChoiceTest {
         assertThat(Choice.SCISSORS.beatsWithMessage(other)).hasValue(expectedMessage);
     }
 
-
+    @ParameterizedTest
+    @EnumSource(value = Choice.class, names = {"ROCK", "SPOCK"})
+    void scissorsShouldNotBeat(Choice other) {
+        assertThat(Choice.SCISSORS.beatsWithMessage(other)).isNotPresent();
+    }
 }
