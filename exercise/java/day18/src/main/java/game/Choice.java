@@ -46,6 +46,10 @@ public enum Choice {
     SPOCK("🖖") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
+            if (other == ROCK)
+                return Optional.of("spock vaporizes rock");
+            if (other == SCISSORS)
+                return Optional.of("spock smashes scissors");
             return Optional.empty();
         }
     };
