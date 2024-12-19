@@ -6,7 +6,10 @@ public enum Choice {
     ROCK("🪨") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            return Optional.empty();
+            if (other == SCISSORS)
+                return Optional.of("rock crushes scissors");
+            else
+                return Optional.empty();
         }
     },
     PAPER("📄") {
