@@ -17,7 +17,12 @@ public enum Choice {
     PAPER("📄") {
         @Override
         public Optional<String> beatsWithMessage(Choice other) {
-            return Optional.empty();
+            if (other == ROCK)
+                return Optional.of("paper covers rock");
+            else if (other == SPOCK)
+                return Optional.of("paper disproves Spock");
+            else
+                return Optional.empty();
         }
     },
     SCISSORS("✂️") {
