@@ -29,24 +29,25 @@ class TourCalculator
             return "No locations !!!";
         }
 
-        $result = '';
-
         usort($this->steps, function ($a, $b) {
             return $a->time <=> $b->time;
         });
 
+        if (!$this->calculated) {
+            foreach ($this->steps as $step) {
+                $this->deliveryTime += $step->deliveryTime;
+            }
+        }
+        $this->calculated = true;
+
+        $result = '';
         foreach ($this->steps as $step) {
             if (!$this->calculated) {
-                $this->deliveryTime += $step->deliveryTime;
                 $result .= $this->formatLine($step) . PHP_EOL;
             }
         }
-
         $result .= $this->formatDeliveryTime($this->deliveryTime) . PHP_EOL;
  
- 
-        $this->calculated = true;
-
         return $result;
     }
 
