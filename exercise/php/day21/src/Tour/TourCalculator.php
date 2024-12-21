@@ -38,7 +38,6 @@ class TourCalculator
                 $this->deliveryTime += $step->deliveryTime;
             }
         }
-        $this->calculated = true;
 
         $result = '';
         foreach ($this->steps as $step) {
@@ -47,6 +46,7 @@ class TourCalculator
             }
         }
         $result .= $this->formatDeliveryTime($this->deliveryTime) . PHP_EOL;
+        $this->calculated = true;
  
         return $result;
     }
