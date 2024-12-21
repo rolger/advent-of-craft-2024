@@ -2,8 +2,6 @@
 
 namespace Tour;
 
-use Tour\Step;
-
 class TourCalculator
 {
     private $steps;
@@ -30,7 +28,7 @@ class TourCalculator
         if (empty($this->steps)) {
             return "No locations !!!";
         }
-        
+
         $result = '';
 
         usort($this->steps, function ($a, $b) {
@@ -40,24 +38,31 @@ class TourCalculator
         foreach ($this->steps as $step) {
             if (!$this->calculated) {
                 $this->deliveryTime += $step->deliveryTime;
-                $result .= $this->formatLine($step, $this->deliveryTime) . PHP_EOL;
+                $result .= $this->formatLine($step) . PHP_EOL;
             }
         }
 
-        $hhMmSs = gmdate("H:i:s", $this->deliveryTime);
-        $result .= "Delivery time | {$hhMmSs}" . PHP_EOL;
+        $result .= $this->formatDeliveryTime($this->deliveryTime) . PHP_EOL;
+ 
+ 
         $this->calculated = true;
 
         return $result;
     }
 
-    private function formatLine($step, $deliveryTime)
+    private function formatLine($step)
     {
         if ($step === null) {
             throw new \InvalidArgumentException();
         } else {
             return "{$step->time} : {$step->label} | {$step->deliveryTime} sec";
         }
+    }
+
+    private function formatDeliveryTime($deliveryTime)
+    {
+        $hhMmSs = gmdate("H:i:s", $deliveryTime);
+        return "Delivery time | {$hhMmSs}";
     }
 }
 
