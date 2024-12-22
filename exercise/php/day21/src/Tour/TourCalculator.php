@@ -11,6 +11,10 @@ class TourCalculator
     public function __construct($steps)
     {
         $this->steps = $steps;
+
+        usort($this->steps, function ($a, $b) {
+            return $a->time <=> $b->time;
+        });
     }
 
     public function isCalculated()
@@ -28,10 +32,6 @@ class TourCalculator
         if (empty($this->steps)) {
             return "No locations !!!";
         }
-
-        usort($this->steps, function ($a, $b) {
-            return $a->time <=> $b->time;
-        });
 
         if (!$this->calculated) {
             foreach ($this->steps as $step) {
