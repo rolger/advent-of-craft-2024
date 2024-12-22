@@ -15,7 +15,6 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/pest",
-    "run": "php src/Tour/TourCalculator.php"
+    "test": "vendor/bin/pest"
   }
 }
