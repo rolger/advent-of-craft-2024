@@ -39,15 +39,22 @@ class TourCalculator
             }
         }
 
+        $result = $this->format($this->steps, $this->deliveryTime, !$this->calculated);
+        
+        $this->calculated = true;
+ 
+        return $result;
+    }
+
+    private function format($steps, $deliveryTime, $includeLines)
+    {
         $result = '';
-        foreach ($this->steps as $step) {
-            if (!$this->calculated) {
+        foreach ($steps as $step) {
+            if ($includeLines) {
                 $result .= $this->formatLine($step) . PHP_EOL;
             }
         }
-        $result .= $this->formatDeliveryTime($this->deliveryTime) . PHP_EOL;
-        $this->calculated = true;
- 
+        $result .= $this->formatDeliveryTime($deliveryTime) . PHP_EOL;
         return $result;
     }
 
