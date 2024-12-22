@@ -2,14 +2,19 @@
 
 namespace Tour;
 
+use Tour\Step;
+use Tour\TourLinePrinter;
+
 class TourCalculator
 {
+    private $tourPrinter;
     private $steps;
     private $deliveryTime = 0;
     private $calculated = false;
 
-    public function __construct($steps)
+    public function __construct($steps, $tourPrinter)
     {
+        $this->tourPrinter = $tourPrinter;
         $this->steps = $steps;
 
         usort($this->steps, function ($a, $b) {
@@ -39,37 +44,13 @@ class TourCalculator
             }
         }
 
-        $result = $this->format($this->steps, $this->deliveryTime);
+        $result = $this->tourPrinter->print($this->steps, $this->deliveryTime);
         
         $this->calculated = true;
  
         return $result;
     }
 
-    private function format($steps, $deliveryTime)
-    {
-        $result = '';
-        foreach ($steps as $step) {
-            $result .= $this->formatLine($step) . PHP_EOL;
-        }
-        $result .= $this->formatDeliveryTime($deliveryTime) . PHP_EOL;
-        return $result;
-    }
-
-    private function formatLine($step)
-    {
-        if ($step === null) {
-            throw new \InvalidArgumentException();
-        } else {
-            return "{$step->time} : {$step->label} | {$step->deliveryTime} sec";
-        }
-    }
-
-    private function formatDeliveryTime($deliveryTime)
-    {
-        $hhMmSs = gmdate("H:i:s", $deliveryTime);
-        return "Delivery time | {$hhMmSs}";
-    }
 }
 
 $steps = [
@@ -78,7 +59,7 @@ $steps = [
     new Step('09:00', 'Location B', 1800),
 ];
 
-$calculator = new TourCalculator($steps);
+$calculator = new TourCalculator($steps, new TourLinePrinter());
 $result = $calculator->calculate();
 
 if (strpos($result, 'No locations') !== false) {

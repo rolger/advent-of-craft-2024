@@ -2,6 +2,7 @@
 
 use Tour\Step;
 use Tour\TourCalculator;
+use Tour\TourLinePrinter;
 
 it('calculates delivery time for some steps', function () {
     $steps = [
@@ -10,7 +11,7 @@ it('calculates delivery time for some steps', function () {
         new Step('08:30', 'Location A', 1800),
     ];
     
-    $calculator = new TourCalculator($steps);
+    $calculator = new TourCalculator($steps, new TourLinePrinter());
     $result1 = $calculator->calculate();
     $result2 = $calculator->calculate();
     
