@@ -1,17 +1,34 @@
 package gifts;
 
 public enum Behavior {
-    NAUGHTY, NICE, VERY_NICE;
 
-    static public Behavior create(String behavior) {
-        switch (behavior) {
-            case "naughty":
-                return NAUGHTY;
-            case "nice":
-                return NICE;
-            case "very nice":
-                return VERY_NICE;
+    NAUGHTY {
+        @Override
+        public Toy wish(Child child) {
+            return child.getLastWish();
         }
-        return null;
+    }, NICE {
+        @Override
+        public Toy wish(Child child) {
+            return child.getSecondWish();
+        }
+    }, VERY_NICE {
+        @Override
+        public Toy wish(Child child) {
+            return child.getFirstWish();
+        }
+    };
+
+
+
+    public abstract Toy wish(Child child);
+
+    public static Behavior create(String behavior) {
+        return switch (behavior) {
+            case "naughty" -> NAUGHTY;
+            case "nice" -> NICE;
+            case "very nice" -> VERY_NICE;
+            default -> throw new IllegalArgumentException("Unknown behavior: " + behavior);
+        };
     }
 }
