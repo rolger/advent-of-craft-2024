@@ -9,7 +9,12 @@ My new approach is to try to select the topics from Object Calisthenics step by 
 ## list of topics
 
 * replace List<Child> childrenRepository with first class collection ChildRepository
+* extract an interface ChildRepository and inject it into Santa
 * replace string with Behavior enum
 * replace List<Toy> wishlist with first class collection ToyWishlist
 
 ## steps
+
+Implement the first class collection ChildRepository, but then I extracted an interface. The class Santa should not know about the implementation, 
+only the interface. It's defining the contract and gets the implementation injected. This leads to the next step, the Dependency Inversion Principle 
+and adoptions in the tests.
