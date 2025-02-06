@@ -22,3 +22,6 @@ and adoptions in the tests.
 
 After refactoring the ChildRepository, I started with "One Dot per Line". I moved the retrieval of the wish to the Child class. Well and this leas 
 to removing the getter of the wishlist.
+
+Finally, I replaced the enum Behavior with a strategy pattern. Now the strategy decides which toy to give to a child. I like this solution, but the 
+process of refactoring was not smooth. I had to change a lot of code and the tests were broken for a long time.
