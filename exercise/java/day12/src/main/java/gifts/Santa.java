@@ -6,10 +6,8 @@ import java.util.List;
 public class Santa {
 
     private final ChildrenRepository childrenRepository;
-    private final List<Child> children;
 
     public Santa() {
-        this.children = new ArrayList<>();
         childrenRepository = new ChildrenRepository();
     }
 
