@@ -17,10 +17,6 @@ public class Child {
         return behavior;
     }
 
-    public List<Toy> getWishlist() {
-        return wishlist;
-    }
-
     public String getName() {
         return name;
     }
