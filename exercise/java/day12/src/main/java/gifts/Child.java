@@ -1,12 +1,10 @@
 package gifts;
 
-import java.util.List;
-
 public class Child {
 
     private final String name;
     private final String behavior;
-    private List<Toy> wishlist;
+    private ToyWishList wishlist;
 
     public Child(String name, String behavior) {
         this.name = name;
@@ -22,18 +20,18 @@ public class Child {
     }
 
     public void setWishList(Toy firstChoice, Toy secondChoice, Toy thirdChoice) {
-        this.wishlist = List.of(firstChoice, secondChoice, thirdChoice);
+        this.wishlist = new ToyWishList(firstChoice, secondChoice, thirdChoice);
     }
 
     public Toy getLastWish() {
-        return wishlist.getLast();
+        return wishlist.getLastWish();
     }
 
     public Toy getSecondWish() {
-        return wishlist.get(1);
+        return wishlist.getSecondWish();
     }
 
     public Toy getFirstWish() {
-        return wishlist.getFirst();
+        return wishlist.getFirstWish();
     }
 }
