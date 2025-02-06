@@ -6,8 +6,9 @@ public class Child {
     private final Behavior behavior;
     private ToyWishList wishlist;
 
-    public Child(String name, String behavior) {
+    public Child(String name, String behavior, ToyWishList wishlist) {
         this.name = name;
+        this.wishlist = wishlist;
         this.behavior = Behavior.create(behavior);
     }
 
@@ -17,10 +18,6 @@ public class Child {
 
     public String getName() {
         return name;
-    }
-
-    public void setWishList(Toy firstChoice, Toy secondChoice, Toy thirdChoice) {
-        this.wishlist = new ToyWishList(firstChoice, secondChoice, thirdChoice);
     }
 
     public Toy getLastWish() {

@@ -23,8 +23,7 @@ class SantaTest {
 
     @Test
     void given_naughty_child_when_distributing_gifts_then_child_receives_third_choice() {
-        Child bobby = new Child("bobby", "naughty");
-        bobby.setWishList(PLAYSTATION, PLUSH, BALL);
+        Child bobby = new Child("bobby", "naughty", new ToyWishList(PLAYSTATION, PLUSH, BALL));
         childrenRepository.add(bobby);
 
         Toy got = santa.chooseToyForChild("bobby");
@@ -34,8 +33,7 @@ class SantaTest {
 
     @Test
     void given_nice_child_when_distributing_gifts_then_child_receives_second_choice() {
-        Child bobby = new Child("bobby", "nice");
-        bobby.setWishList(PLAYSTATION, PLUSH, BALL);
+        Child bobby = new Child("bobby", "nice", new ToyWishList(PLAYSTATION, PLUSH, BALL));
         childrenRepository.add(bobby);
 
         Toy got = santa.chooseToyForChild("bobby");
@@ -45,8 +43,7 @@ class SantaTest {
 
     @Test
     void given_very_nice_child_when_distributing_gifts_then_child_receives_first_choice() {
-        Child bobby = new Child("bobby", "very nice");
-        bobby.setWishList(PLAYSTATION, PLUSH, BALL);
+        Child bobby = new Child("bobby", "very nice", new ToyWishList(PLAYSTATION, PLUSH, BALL));
         childrenRepository.add(bobby);
 
         Toy got = santa.chooseToyForChild("bobby");
@@ -56,8 +53,7 @@ class SantaTest {
 
     @Test
     void given_non_existing_child_when_distributing_gifts_then_exception_thrown() {
-        Child bobby = new Child("bobby", "very nice");
-        bobby.setWishList(PLAYSTATION, PLUSH, BALL);
+        Child bobby = new Child("bobby", "very nice", new ToyWishList(PLAYSTATION, PLUSH, BALL));
         childrenRepository.add(bobby);
 
         Assertions.assertThrows(NoSuchElementException.class, () -> santa.chooseToyForChild("alice"));
