@@ -2,18 +2,19 @@ package gifts;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 public class Santa {
 
-    private final List<Child> childrenRepository;
+    private final ChildrenRepository childrenRepository;
+    private final List<Child> children;
+
     public Santa() {
-        this.childrenRepository = new ArrayList<>();
+        this.children = new ArrayList<>();
+        childrenRepository = new ChildrenRepository();
     }
 
     public Toy chooseToyForChild(String childName){
-        Child child = findChildByName(childName);
+        Child child = childrenRepository.findChildByName(childName);
 
         if("naughty".equals(child.getBehavior()))
             return child.getWishlist().get(child.getWishlist().size() - 1);
@@ -25,18 +26,6 @@ public class Santa {
             return child.getWishlist().get(0);
 
         return null;
-    }
-
-    private Child findChildByName(String childName) {
-        Optional<Child> found = Optional.empty();
-        for (int i = 0; i < childrenRepository.size(); i++) {
-            Child currentChild = childrenRepository.get(i);
-            if (currentChild.getName().equals(childName)) {
-                found = Optional.of(currentChild);
-            }
-        }
-        Child child = found.orElseThrow(NoSuchElementException::new);
-        return child;
     }
 
     public void addChild(Child child) {
