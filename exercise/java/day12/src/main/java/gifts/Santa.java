@@ -18,7 +18,7 @@ public class Santa {
             return child.getSecondWish();
 
         if("very nice".equals(child.getBehavior()))
-            return child.getWishlist().getFirst();
+            return child.getFirstWish();
 
         return null;
     }

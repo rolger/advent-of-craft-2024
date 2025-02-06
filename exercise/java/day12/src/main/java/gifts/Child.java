@@ -36,4 +36,8 @@ public class Child {
     public Toy getSecondWish() {
         return wishlist.get(1);
     }
+
+    public Toy getFirstWish() {
+        return wishlist.getFirst();
+    }
 }

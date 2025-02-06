@@ -10,6 +10,7 @@ My new approach is to try to select the topics from Object Calisthenics step by 
 
 * replace List<Child> childrenRepository with first class collection ChildRepository
 * extract an interface ChildRepository and inject it into Santa
+* One Dot per Line in class Santa
 * replace string with Behavior enum
 * replace List<Toy> wishlist with first class collection ToyWishlist
 
@@ -18,3 +19,5 @@ My new approach is to try to select the topics from Object Calisthenics step by 
 Implement the first class collection ChildRepository, but then I extracted an interface. The class Santa should not know about the implementation, 
 only the interface. It's defining the contract and gets the implementation injected. This leads to the next step, the Dependency Inversion Principle 
 and adoptions in the tests.
+
+After refactoring the ChildRepository, I started with "One Dot per Line". I moved the retrieval of the wish to the Child class. 
