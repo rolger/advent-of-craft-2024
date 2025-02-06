@@ -11,13 +11,13 @@ public class Santa {
     public Toy chooseToyForChild(String childName){
         Child child = childrenRepository.findChildByName(childName);
 
-        if("naughty".equals(child.getBehavior()))
+        if(Behavior.NAUGHTY.equals(child.getBehavior()))
             return child.getLastWish();
 
-        if("nice".equals(child.getBehavior()))
+        if(Behavior.NICE.equals(child.getBehavior()))
             return child.getSecondWish();
 
-        if("very nice".equals(child.getBehavior()))
+        if(Behavior.VERY_NICE.equals(child.getBehavior()))
             return child.getFirstWish();
 
         return null;

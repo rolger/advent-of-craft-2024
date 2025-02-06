@@ -3,15 +3,15 @@ package gifts;
 public class Child {
 
     private final String name;
-    private final String behavior;
+    private final Behavior behavior;
     private ToyWishList wishlist;
 
     public Child(String name, String behavior) {
         this.name = name;
-        this.behavior = behavior;
+        this.behavior = Behavior.create(behavior);
     }
 
-    public String getBehavior() {
+    public Behavior getBehavior() {
         return behavior;
     }
 
