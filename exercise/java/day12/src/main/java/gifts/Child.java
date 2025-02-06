@@ -3,32 +3,19 @@ package gifts;
 public class Child {
 
     private final String name;
-    private final Behavior behavior;
-    private ToyWishList wishlist;
+    private final ChildBehavior behavior;
 
     public Child(String name, String behavior, ToyWishList wishlist) {
         this.name = name;
-        this.wishlist = wishlist;
-        this.behavior = Behavior.create(behavior);
+        this.behavior = ChildBehavior.create(behavior, wishlist);
     }
 
-    public Behavior getBehavior() {
-        return behavior;
+    public Toy computeWish() {
+        return behavior.wish();
     }
 
     public String getName() {
         return name;
     }
 
-    public Toy getLastWish() {
-        return wishlist.getLastWish();
-    }
-
-    public Toy getSecondWish() {
-        return wishlist.getSecondWish();
-    }
-
-    public Toy getFirstWish() {
-        return wishlist.getFirstWish();
-    }
 }

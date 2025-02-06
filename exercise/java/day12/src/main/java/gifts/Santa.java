@@ -11,6 +11,6 @@ public class Santa {
     public Toy chooseToyForChild(String childName){
         Child child = childrenRepository.findChildByName(childName);
 
-        return child.getBehavior().wish(child);
+        return child.computeWish();
     }
 }
