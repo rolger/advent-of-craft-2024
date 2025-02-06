@@ -22,8 +22,4 @@ public class Santa {
 
         return null;
     }
-
-    public void addChild(Child child) {
-        childrenRepository.add(child);
-    }
 }
