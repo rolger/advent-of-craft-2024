@@ -13,14 +13,7 @@ public class Santa {
     }
 
     public Toy chooseToyForChild(String childName){
-        Optional<Child> found = Optional.empty();
-        for (int i = 0; i < childrenRepository.size(); i++) {
-            Child currentChild = childrenRepository.get(i);
-            if (currentChild.getName().equals(childName)) {
-                found = Optional.of(currentChild);
-            }
-        }
-        Child child = found.orElseThrow(NoSuchElementException::new);
+        Child child = findChildByName(childName);
 
         if("naughty".equals(child.getBehavior()))
             return child.getWishlist().get(child.getWishlist().size() - 1);
@@ -32,6 +25,18 @@ public class Santa {
             return child.getWishlist().get(0);
 
         return null;
+    }
+
+    private Child findChildByName(String childName) {
+        Optional<Child> found = Optional.empty();
+        for (int i = 0; i < childrenRepository.size(); i++) {
+            Child currentChild = childrenRepository.get(i);
+            if (currentChild.getName().equals(childName)) {
+                found = Optional.of(currentChild);
+            }
+        }
+        Child child = found.orElseThrow(NoSuchElementException::new);
+        return child;
     }
 
     public void addChild(Child child) {
