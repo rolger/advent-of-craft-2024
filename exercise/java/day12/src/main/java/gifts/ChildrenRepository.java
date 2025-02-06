@@ -13,14 +13,10 @@ public class ChildrenRepository {
     }
 
     Child findChildByName(String childName) {
-        Optional<Child> found = Optional.empty();
-        for (int i = 0; i < children.size(); i++) {
-            Child currentChild = children.get(i);
-            if (currentChild.getName().equals(childName)) {
-                found = Optional.of(currentChild);
-            }
-        }
-        return found.orElseThrow(NoSuchElementException::new);
+        return children.stream()
+                .filter(child -> child.getName().equals(childName))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public void add(Child child) {
