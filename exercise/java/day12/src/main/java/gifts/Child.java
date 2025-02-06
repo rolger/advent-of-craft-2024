@@ -32,4 +32,8 @@ public class Child {
     public Toy getLastWish() {
         return wishlist.getLast();
     }
+
+    public Toy getSecondWish() {
+        return wishlist.get(1);
+    }
 }
