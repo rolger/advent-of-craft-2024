@@ -12,13 +12,13 @@ public class Santa {
         Child child = childrenRepository.findChildByName(childName);
 
         if("naughty".equals(child.getBehavior()))
-            return child.getWishlist().get(child.getWishlist().size() - 1);
+            return child.getLastWish();
 
         if("nice".equals(child.getBehavior()))
             return child.getWishlist().get(1);
 
         if("very nice".equals(child.getBehavior()))
-            return child.getWishlist().get(0);
+            return child.getWishlist().getFirst();
 
         return null;
     }

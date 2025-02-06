@@ -28,4 +28,8 @@ public class Child {
     public void setWishList(Toy firstChoice, Toy secondChoice, Toy thirdChoice) {
         this.wishlist = List.of(firstChoice, secondChoice, thirdChoice);
     }
+
+    public Toy getLastWish() {
+        return wishlist.getLast();
+    }
 }
