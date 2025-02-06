@@ -1,14 +1,11 @@
 package gifts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Santa {
 
     private final ChildrenRepository childrenRepository;
 
-    public Santa() {
-        childrenRepository = new InMemoryChildrenRepository();
+    public Santa(ChildrenRepository childrenRepository) {
+        this.childrenRepository = childrenRepository;
     }
 
     public Toy chooseToyForChild(String childName){

@@ -11,11 +11,14 @@ class SantaTest {
     private static final Toy PLAYSTATION = new Toy("playstation");
     private static final Toy BALL = new Toy("ball");
     private static final Toy PLUSH = new Toy("plush");
+
     private Santa santa;
+    private ChildrenRepository childrenRepository;
 
     @BeforeEach
     void setUp() {
-        santa = new Santa();
+        childrenRepository = new InMemoryChildrenRepository();
+        santa = new Santa(childrenRepository);
     }
 
     @Test
