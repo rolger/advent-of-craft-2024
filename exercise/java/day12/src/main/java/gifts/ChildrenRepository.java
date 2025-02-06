@@ -20,8 +20,7 @@ public class ChildrenRepository {
                 found = Optional.of(currentChild);
             }
         }
-        Child child = found.orElseThrow(NoSuchElementException::new);
-        return child;
+        return found.orElseThrow(NoSuchElementException::new);
     }
 
     public void add(Child child) {
