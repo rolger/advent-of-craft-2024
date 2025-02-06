@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class ChildrenRepository {
+public class InMemoryChildrenRepository {
     private final List<Child> children;
 
-    public ChildrenRepository() {
+    public InMemoryChildrenRepository() {
         children = new ArrayList<>();
     }
 
