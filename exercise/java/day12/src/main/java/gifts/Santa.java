@@ -8,7 +8,7 @@ public class Santa {
     private final ChildrenRepository childrenRepository;
 
     public Santa() {
-        childrenRepository = new ChildrenRepository();
+        childrenRepository = new InMemoryChildrenRepository();
     }
 
     public Toy chooseToyForChild(String childName){
